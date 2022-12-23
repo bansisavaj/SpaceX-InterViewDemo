@@ -100,6 +100,16 @@ class CompanyInfoVC: UIViewController {
 //MARK: - UITableViewDelegate
 extension CompanyInfoVC: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch self.arrCompanySections[indexPath.section].sectionType {
+        case .Lunaches:
+            let dict = self.arrLaunch[indexPath.row]
+            self.launchesActionSheet(article: dict.links?.article ?? "", wikipedia: dict.links?.wikipedia ?? "", video: dict.links?.youtubeID ?? "")
+            
+        case .CompanyInfo:
+            break
+        }
+    }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CompanyHeaderCell") as! CompanyHeaderCell
         let dict = self.arrCompanySections[section]

@@ -68,6 +68,35 @@ extension UIViewController {
 
         self.present(actionSheet, animated: true, completion: nil)
     }
+    func launchesActionSheet(article: String, wikipedia: String, video: String) {
+        let actionSheet = UIAlertController(title: "Launches", message: nil, preferredStyle: .actionSheet)
+        
+        let Button1 = UIAlertAction(title: "Article", style: .default) { _ in
+            if let link = URL(string: article) {
+              UIApplication.shared.open(link)
+            }
+        }
+        let Button2 = UIAlertAction(title: "Wikipedia", style: .default) { _ in
+            if let link = URL(string: wikipedia) {
+              UIApplication.shared.open(link)
+            }
+        }
+        let Button3 = UIAlertAction(title: "Video pages", style: .default) { _ in
+            if let link = URL(string: "https://www.youtube.com/watch?v=" + video) {
+              UIApplication.shared.open(link)
+            }
+        }
+        let Button4 = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            self.dismiss(animated: true, completion: nil)
+        }
+
+        actionSheet.addAction(Button1)
+        actionSheet.addAction(Button2)
+        actionSheet.addAction(Button3)
+        actionSheet.addAction(Button4)
+
+        self.present(actionSheet, animated: true, completion: nil)
+    }
 }
 extension String {
     
